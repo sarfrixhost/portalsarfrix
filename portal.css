@@ -1,1 +1,413 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Rajdhani:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #050505;
+  --white: #ffffff;
+  --cyan: #00eaff;
+  --purple: #9d4dff;
+  --pink: #ff2b91;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 50% 0%, #101c25 0%, transparent 55%),
+    linear-gradient(145deg, #030303, #080b10, #030303);
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0, 234, 255, .035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 234, 255, .035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black, transparent 90%);
+  animation: gridMove 18s linear infinite;
+}
+
+@keyframes gridMove {
+  from { transform: translateY(0); }
+  to { transform: translateY(48px); }
+}
+
+.glow {
+  position: absolute;
+  width: 380px;
+  height: 380px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: .16;
+  pointer-events: none;
+}
+
+.glow-one {
+  background: #00cfff;
+  top: -180px;
+  left: -100px;
+  animation: glowOne 12s ease-in-out infinite alternate;
+}
+
+.glow-two {
+  background: #8b35ff;
+  bottom: -200px;
+  right: -100px;
+  animation: glowTwo 14s ease-in-out infinite alternate;
+}
+
+@keyframes glowOne {
+  from { transform: translate(0, 0); opacity: .12; }
+  to { transform: translate(180px, 120px); opacity: .25; }
+}
+
+@keyframes glowTwo {
+  from { transform: translate(0, 0); opacity: .12; }
+  to { transform: translate(-180px, -100px); opacity: .24; }
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #8af8ff;
+  box-shadow: 0 0 10px #00eaff, 0 0 20px #00eaff;
+  animation: particleFloat linear infinite;
+}
+
+@keyframes particleFloat {
+  0% {
+    transform: translateY(110vh);
+    opacity: 0;
+  }
+  15% { opacity: .8; }
+  85% { opacity: .7; }
+  100% {
+    transform: translateY(-10vh);
+    opacity: 0;
+  }
+}
+
+.container {
+  width: min(1100px, 92%);
+  margin: auto;
+  padding: 75px 0 30px;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 55px;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 17px;
+  border: 1px solid rgba(0, 234, 255, .3);
+  border-radius: 30px;
+  background: rgba(0, 234, 255, .055);
+  color: #9cf7ff;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+  box-shadow: 0 0 18px rgba(0, 234, 255, .1);
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #00ffae;
+  box-shadow: 0 0 10px #00ffae;
+  animation: statusPulse 1.5s infinite;
+}
+
+@keyframes statusPulse {
+  50% { opacity: .35; }
+}
+
+.heading h1 {
+  margin-top: 25px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: clamp(32px, 6vw, 62px);
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-shadow: 0 0 20px rgba(255,255,255,.15);
+}
+
+.heading h1 span {
+  color: var(--cyan);
+  text-shadow: 0 0 12px rgba(0,234,255,.7),
+               0 0 35px rgba(0,234,255,.3);
+}
+
+.heading p {
+  margin-top: 12px;
+  font-size: 18px;
+  color: #a6b3bd;
+  letter-spacing: 1.5px;
+}
+
+.heading-line {
+  width: 95px;
+  height: 3px;
+  margin: 25px auto 0;
+  border-radius: 10px;
+  background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+  box-shadow: 0 0 15px var(--cyan);
+  animation: linePulse 2s ease-in-out infinite alternate;
+}
+
+@keyframes linePulse {
+  from { width: 65px; opacity: .5; }
+  to { width: 130px; opacity: 1; }
+}
+
+.portal-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.portal-button {
+  --accent: #00eaff;
+  position: relative;
+  min-height: 190px;
+  padding: 25px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-decoration: none;
+  color: white;
+  background: linear-gradient(145deg, rgba(20,25,32,.92), rgba(7,10,14,.96));
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 45%);
+  border-radius: 17px;
+  overflow: hidden;
+  isolation: isolate;
+  box-shadow:
+    0 0 12px color-mix(in srgb, var(--accent), transparent 88%),
+    inset 0 0 18px color-mix(in srgb, var(--accent), transparent 94%);
+  animation: buttonGlow 3s ease-in-out infinite alternate;
+  transition: transform .3s ease, box-shadow .3s ease,
+             border-color .3s ease, background .3s ease;
+}
+
+.portal-button::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  z-index: -1;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    color-mix(in srgb, var(--accent), transparent 82%) 50%,
+    transparent 60%
+  );
+  transform: translateX(-40%);
+  animation: shine 5s linear infinite;
+}
+
+@keyframes shine {
+  to { transform: translateX(40%); }
+}
+
+@keyframes buttonGlow {
+  from {
+    box-shadow: 0 0 8px color-mix(in srgb, var(--accent), transparent 88%),
+                inset 0 0 12px color-mix(in srgb, var(--accent), transparent 96%);
+  }
+  to {
+    box-shadow: 0 0 20px color-mix(in srgb, var(--accent), transparent 76%),
+                inset 0 0 20px color-mix(in srgb, var(--accent), transparent 92%);
+  }
+}
+
+.portal-button:hover {
+  transform: translateY(-8px) scale(1.035);
+  border-color: var(--accent);
+  background: linear-gradient(145deg, rgba(25,35,44,.98), rgba(8,12,18,.98));
+  box-shadow:
+    0 0 18px color-mix(in srgb, var(--accent), transparent 45%),
+    0 0 40px color-mix(in srgb, var(--accent), transparent 75%),
+    inset 0 0 20px color-mix(in srgb, var(--accent), transparent 88%);
+}
+
+.logo-box {
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+}
+
+.logo-box img {
+  width: 46px;
+  height: 46px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--accent), transparent 45%));
+  transition: none;
+}
+
+.portal-button > span {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-align: center;
+}
+
+.portal-button small {
+  color: #9caab5;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.github { --accent: #f5f5f5; }
+.bkash { --accent: #ff278b; }
+.blogger { --accent: #ff782e; }
+.google-sites { --accent: #62a7ff; }
+.infinityfree { --accent: #00eaff; }
+.wordpress { --accent: #65baff; }
+.private { --accent: #ad6bff; }
+
+.private-icon {
+  width: 55px;
+  height: 55px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #ad6bff;
+  border-radius: 15px;
+  background: rgba(157,77,255,.1);
+  box-shadow: 0 0 20px rgba(157,77,255,.25);
+}
+
+.private-icon span {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  color: #d9b8ff;
+}
+
+footer {
+  margin-top: 55px;
+  text-align: center;
+}
+
+.footer-line {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #1d5660, transparent);
+  margin-bottom: 22px;
+}
+
+footer p {
+  color: #82909c;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+footer p span {
+  color: var(--cyan);
+}
+
+.clock {
+  margin-top: 12px;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: var(--cyan);
+  text-shadow: 0 0 12px var(--cyan);
+}
+
+@media (max-width: 750px) {
+  .portal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px;
+  }
+
+  .container {
+    padding-top: 55px;
+  }
+
+  .portal-button {
+    min-height: 175px;
+  }
+}
+
+@media (max-width: 420px) {
+  .heading h1 {
+    font-size: 29px;
+    letter-spacing: 1px;
+  }
+
+  .heading p {
+    font-size: 15px;
+  }
+
+  .portal-grid {
+    gap: 12px;
+  }
+
+  .portal-button {
+    min-height: 155px;
+    padding: 15px 8px;
+  }
+
+  .portal-button > span {
+    font-size: 10px;
+  }
+
+  .portal-button small {
+    font-size: 11px;
+  }
+
+  .logo-box img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grid-overlay,
+  .glow,
+  .particle,
+  .portal-button,
+  .portal-button::before,
+  .status-dot,
+  .heading-line {
+    animation: none;
+  }
+}
+
